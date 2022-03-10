@@ -2,6 +2,8 @@ import { useState } from "react";
 import jumbotron_bg from "../assets/jumbotronimg1.jpg";
 import TextInput from "./shared/TextInput";
 import Button from "./shared/Button";
+import { addNewCity } from "../utils/localStorage";
+
 
 export default function Home() {
   const [searchValue, setSearchValue] = useState("");
@@ -21,6 +23,7 @@ export default function Home() {
           feelsLike: data.main.feels_like,
         };
         setCityWeatherDetails(weatherData);
+        addNewCity(searchValue);
       });
   };
 
