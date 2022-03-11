@@ -1,17 +1,25 @@
-import { useState } from "react";
+import { useState,useEffect} from "react";
 import jumbotron_bg from "../assets/jumbotronimg1.jpg";
 import TextInput from "./shared/TextInput";
 import Button from "./shared/Button";
-import { addNewCity } from "../utils/localStorage";
+import { addNewCity, getLocalStorageTokens } from "../utils/localStorage";
 import PreviousSearches from "./PreviousSearches";
+
 
 export default function Home() {
   const [searchValue, setSearchValue] = useState("");
   const [cityWeatherDetails, setCityWeatherDetails] = useState({});
+  const [previousSearches, setPreviousSearches] = useState([]);
+
+  useEffect(() => {
+    const tokens = getLocalStorageTokens();
+    const previousSearches = tokens.previousSearches;
+    setPreviousSearches(previousSearches);
+  }, [cityWeatherDetails]);
 
   const handleSearch = () => {
     fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&appid=f1600ad5dbe2a16371476f7b8d031fcf`
+      `https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&APPID=708d89c1b1d4ad5dc1c076645bbbd193`
     )
       .then((response) => {
         return response.json();
@@ -62,9 +70,10 @@ export default function Home() {
 
       <div className="flex p-4">
         <div className="w-2/3">sresth</div>
-        <div className="w-1/3"><PreviousSearches/></div>
+        <div className="w-1/3">
+          <PreviousSearches previousSearches = {previousSearches}/>
+        </div>
       </div>
-
     </div>
   );
 }

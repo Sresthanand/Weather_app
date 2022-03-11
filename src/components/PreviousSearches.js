@@ -1,22 +1,15 @@
 import { getLocalStorageTokens } from "../utils/localStorage";
 import { useEffect, useState } from "react";
 
-export default function PreviousSearches() {
-  const [previousSearches, setPreviousSearches] = useState([]);
+export default function PreviousSearches({ previousSearches }) {
   const [currentSearchResults, setCurrentSearchesResults] = useState({});
-
-  useEffect(() => {
-    const tokens = getLocalStorageTokens();
-    const previousSearches = tokens.previousSearches;
-    setPreviousSearches(previousSearches);
-  }, []);
 
   useEffect(() => {
     const getData = async () => {
       let ans = {};
       for (let i of previousSearches) {
         const data = await handleSearch(i);
-        ans[i] = data;cd 
+        ans[i] = data;
       }
       setCurrentSearchesResults(ans);
     };
@@ -25,7 +18,7 @@ export default function PreviousSearches() {
 
   const handleSearch = async (searchValue) => {
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&appid=f1600ad5dbe2a16371476f7b8d031fcf`
+      `https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&APPID=708d89c1b1d4ad5dc1c076645bbbd193`
     );
     const formattedResponse = await response.json();
     const weatherData = {
@@ -42,8 +35,17 @@ export default function PreviousSearches() {
         <h1 className="text-xl text-blue-900">Previous Searches</h1>
       </div>
 
-      <div className="shadow-lg rounded-lg p-1 text-center overflow-auto">
-        {JSON.stringify(currentSearchResults)}
+      <div className="hover:shadow-lg rounded-lg p-1 text-center overflow-auto text-blue-700 p-3 bg-blue-200 ">
+        {Object.keys(currentSearchResults).map((value) => {
+            const cityWeatherDetails = currentSearchResults[value];
+          return (
+            <div>
+              {value}: {cityWeatherDetails.descriptor}, Temperature:{" "}
+              {cityWeatherDetails.temperature}, Feels Like:
+              {cityWeatherDetails.feelsLike}{" "}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
