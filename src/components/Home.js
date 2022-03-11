@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import jumbotron_bg from "../assets/jumbotronimg1.jpg";
+import jumbotron_bg from "../assets/giphy.svg";
 import TextInput from "./shared/TextInput";
 import Button from "./shared/Button";
 import { addNewCity, getLocalStorageTokens } from "../utils/localStorage";
@@ -38,17 +38,22 @@ export default function Home() {
   return (
     <div className="w-full h-full">
       <div
-        className="w-full h-2/3 bg-center flex flex-col items-center justify-center"
-        style={{ backgroundImage: `url(${jumbotron_bg})` }}
+
+        className="w-full h-2/3 bg-center flex  items-center justify-center bg-cover p-6"
+        // style={{ backgroundImage: `url(${jumbotron_bg})` }}
       >
-        <h1 className="text-3xl mb-4 text-blue-900">Search Weather For City</h1>
+        <div className="w-1/2 h-full flex items-center justify-center">
+        <img src={jumbotron_bg}></img>
+        </div>
+   <div className="w-1/2 h-full flex-col flex items-center justify-center bg-gray-200 rounded-lg">
+        <h1 className="text-3xl mb-4 text-purple-900">Search Weather For City</h1>
         <div>
           <TextInput
             value={searchValue}
             onChange={(e) => {
               setSearchValue(e.target.value);
             }}
-            classes="w-96 h-10"
+            classes="w-96 h-10 border-2 border-purple-700 border-solid"
             placeholder="Enter Location"
           />
           <Button
@@ -60,12 +65,14 @@ export default function Home() {
           />
         </div>
         {cityWeatherDetails.descriptor && (
-          <div className="text-blue-800">
+          <div className="text-purple-800">
             {cityWeatherDetails.descriptor}, Temperature:{" "}
             {cityWeatherDetails.temperature}, Feels Like:
             {cityWeatherDetails.feelsLike}
           </div>
         )}
+</div>
+
       </div>
 
       <div className="flex p-4 h-1/3">

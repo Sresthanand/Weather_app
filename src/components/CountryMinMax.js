@@ -23,8 +23,8 @@ export default function CountryMinMax() {
   };
 
   return (
-    <div className="h-full text-center bg-blue-200 w-full rounded-lg hover:shadow-lg flex flex-col items-center justify-center">
-      <h1 className="text-xl mb-2 text-blue-900">
+    <div className="h-full text-center  w-full rounded-lg shadow-xl flex flex-col items-center justify-center">
+      <h1 className="text-xl mb-2 text-purple-900">
         Get Minium and Maximum Temperatures by Country
       </h1>
       <div>
@@ -33,7 +33,7 @@ export default function CountryMinMax() {
           onChange={(e) => {
             setSearchValue(e.target.value);
           }}
-          classes="w-96 h-10"
+          classes="w-96 h-10 border-2 border-purple-700 border-solid"
           placeholder="Enter Country"
         />
         <Button

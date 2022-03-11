@@ -31,11 +31,11 @@ export default function PreviousSearches({ previousSearches }) {
 
   return (
     <div className="w-full h-full overflow-auto ">
-      <div className="shadow-lg rounded-lg p-1 text-center">
-        <h1 className="text-xl text-blue-900">Previous Searches</h1>
+      <div className=" rounded-lg p-1 text-center">
+        <h1 className="text-xl text-purple-900">Previous Searches</h1>
       </div>
 
-      <div className="hover:shadow-lg rounded-lg p-1 text-center overflow-auto text-blue-700 p-3 bg-blue-200 ">
+      <div className="shadow-xl rounded-lg p-1 text-center overflow-auto text-purple-700 p-3  ">
         {Object.keys(currentSearchResults).map((value) => {
             const cityWeatherDetails = currentSearchResults[value];
           return (
