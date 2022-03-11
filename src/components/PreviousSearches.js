@@ -39,7 +39,7 @@ export default function PreviousSearches({ previousSearches }) {
         {Object.keys(currentSearchResults).map((value) => {
             const cityWeatherDetails = currentSearchResults[value];
           return (
-            <div>
+            <div key={value}>
               {value}: {cityWeatherDetails.descriptor}, Temperature:{" "}
               {cityWeatherDetails.temperature}, Feels Like:
               {cityWeatherDetails.feelsLike}{" "}
