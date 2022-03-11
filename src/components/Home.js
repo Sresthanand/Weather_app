@@ -3,7 +3,7 @@ import jumbotron_bg from "../assets/jumbotronimg1.jpg";
 import TextInput from "./shared/TextInput";
 import Button from "./shared/Button";
 import { addNewCity } from "../utils/localStorage";
-
+import PreviousSearches from "./PreviousSearches";
 
 export default function Home() {
   const [searchValue, setSearchValue] = useState("");
@@ -59,6 +59,12 @@ export default function Home() {
           </div>
         )}
       </div>
+
+      <div className="flex p-4">
+        <div className="w-2/3">sresth</div>
+        <div className="w-1/3"><PreviousSearches/></div>
+      </div>
+
     </div>
   );
 }

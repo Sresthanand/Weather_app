@@ -9,3 +9,4 @@ export default function TextInput({ value, onChange, classes, placeholder }) {
     />
   );
 }
+
